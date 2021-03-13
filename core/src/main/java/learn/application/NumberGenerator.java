@@ -4,5 +4,5 @@ public interface NumberGenerator {
 
     int next();
 
-    int getNextNumber();
+    int getMaxNumber();
 }
