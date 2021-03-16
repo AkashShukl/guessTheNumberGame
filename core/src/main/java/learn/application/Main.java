@@ -28,6 +28,10 @@ public class Main {
 
         //close context (container)
 
+        Game game = ctx.getBean(Game.class);
+
+        game.reset();
+
         ctx.close();
 
     }

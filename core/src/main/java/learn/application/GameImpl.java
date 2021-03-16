@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public class GameImpl implements Game {
 
-    private static final Logger log = LoggerFactory.getLogger(Gameimpl.class);
+    private static final Logger log = LoggerFactory.getLogger(GameImpl.class);
 
     private NumberGenerator numberGenerator;
     private int guessCount = 10;
@@ -16,6 +16,16 @@ public class GameImpl implements Game {
     private int remainingGuesses;
     private boolean validNumberRange = true;
 
+
+//    //constructor based dependency injection
+//    public GameImpl(NumberGenerator numberGenerator){
+//        this.numberGenerator = numberGenerator;
+//    }
+
+    //setter based dependency injection
+    public void setNumberGenerator( NumberGenerator numberGenerator){
+        this.numberGenerator =  numberGenerator;
+    }
 
     @Override
     public int getNumber() {
@@ -82,7 +92,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean isGameWon() {
-        return guess == number;
+        return this.guess == number;
     }
 
     @Override

@@ -9,4 +9,12 @@
 
     </bean>
 
+    <bean id="game" class="learn.application.GameImpl">
+        <!--  constructor based dependency injection      -->
+        <!--  <constructor-arg ref="numberGenerator"/>-->
+        <!--  setter based dependency injection is done witth the help of property and ref keyword
+         name refers to tthe property of the class while ref refers to the bean id of that particular bean we are using -->
+        <property name="numberGenerator" ref="numberGenerator"> </property>
+    </bean>
+
 </beans>
