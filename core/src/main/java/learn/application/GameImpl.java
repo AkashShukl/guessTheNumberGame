@@ -3,6 +3,8 @@ package learn.application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
+
 public class GameImpl implements Game {
 
     private static final Logger log = LoggerFactory.getLogger(GameImpl.class);
@@ -25,6 +27,17 @@ public class GameImpl implements Game {
     //setter based dependency injection
     public void setNumberGenerator( NumberGenerator numberGenerator){
         this.numberGenerator =  numberGenerator;
+    }
+    @PostConstruct
+    @Override
+    public void reset() {
+        smallest = 0;
+        guess = 0;
+        remainingGuesses = 0;
+        biggest = numberGenerator.getMaxNumber();
+        number = numberGenerator.next();
+        log.debug("the number is {}", number);
+
     }
 
     @Override
@@ -57,16 +70,7 @@ public class GameImpl implements Game {
         return this.remainingGuesses;
     }
 
-    @Override
-    public void reset() {
-        smallest = 0;
-        guess = 0;
-        remainingGuesses = 0;
-        biggest = numberGenerator.getMaxNumber();
-        number = numberGenerator.next();
-        log.debug("the number is {}", number);
 
-    }
 
     @Override
     public void check() {

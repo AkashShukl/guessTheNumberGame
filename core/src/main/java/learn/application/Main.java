@@ -30,8 +30,6 @@ public class Main {
 
         Game game = ctx.getBean(Game.class);
 
-        game.reset();
-
         ctx.close();
 
     }
