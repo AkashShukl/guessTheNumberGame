@@ -1,4 +1,4 @@
-package learn.application;
+package learn.application.console;
 
 public interface NumberGenerator {
 
