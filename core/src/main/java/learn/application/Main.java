@@ -31,6 +31,8 @@ public class Main {
 
         Game game = ctx.getBean(Game.class);
 
+        MessageGenerator messageGenerator = ctx.getBean(MessageGenerator.class);
+        System.out.println(messageGenerator.getMainMessage());
         ctx.close();
 
     }
