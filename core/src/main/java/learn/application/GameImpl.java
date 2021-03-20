@@ -2,14 +2,18 @@ package learn.application;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 public class GameImpl implements Game {
 
     private static final Logger log = LoggerFactory.getLogger(GameImpl.class);
 
+    @Autowired
     private NumberGenerator numberGenerator;
+    
     private int guessCount = 10;
     private int number;
     private int guess;
@@ -25,9 +29,9 @@ public class GameImpl implements Game {
 //    }
 
     //setter based dependency injection
-    public void setNumberGenerator( NumberGenerator numberGenerator){
-        this.numberGenerator =  numberGenerator;
-    }
+//    public void setNumberGenerator( NumberGenerator numberGenerator){
+//        this.numberGenerator =  numberGenerator;
+//    }
     @PostConstruct
     @Override
     public void reset() {
@@ -39,7 +43,10 @@ public class GameImpl implements Game {
         log.debug("the number is {}", number);
 
     }
-
+    @PreDestroy
+    public void preDestroy(){
+        log.info("in game destroy method!");
+    }
     @Override
     public int getNumber() {
         return this.number;
