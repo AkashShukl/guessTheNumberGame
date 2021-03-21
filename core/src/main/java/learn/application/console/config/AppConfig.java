@@ -1,10 +1,13 @@
-package learn.application.console;
+package learn.application.console.config;
 
+import learn.application.console.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
+@Import(GameConfig.class)
 @ComponentScan(basePackages = "learn.application")
 public class AppConfig {
     //Bean method configuration implementation

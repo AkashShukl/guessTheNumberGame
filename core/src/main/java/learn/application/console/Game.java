@@ -9,8 +9,10 @@ public interface Game {
     int getRemainingGuesses();
     void reset();
     void check();
-
+    int getGuessCount();
     boolean isValidNumberRange();
     boolean isGameWon();
     boolean isGameLost();
+
+
 }

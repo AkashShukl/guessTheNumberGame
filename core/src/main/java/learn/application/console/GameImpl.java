@@ -13,13 +13,15 @@ public class GameImpl implements Game {
 
     @Autowired
     private NumberGenerator numberGenerator;
-    
-    private int guessCount = 10;
+
+    @Autowired
+    private int guessCount ;
+
     private int number;
     private int guess;
     private int smallest;
     private int biggest;
-    private int remainingGuesses;
+    private int remainingGuesses = guessCount;
     private boolean validNumberRange = true;
 
 
@@ -37,7 +39,7 @@ public class GameImpl implements Game {
     public void reset() {
         smallest = 0;
         guess = 0;
-        remainingGuesses = 0;
+        remainingGuesses = guessCount;
         biggest = numberGenerator.getMaxNumber();
         number = numberGenerator.next();
         log.debug("the number is {}", number);
@@ -77,7 +79,10 @@ public class GameImpl implements Game {
         return this.remainingGuesses;
     }
 
-
+    @Override
+    public int getGuessCount() {
+        return guessCount;
+    }
 
     @Override
     public void check() {
