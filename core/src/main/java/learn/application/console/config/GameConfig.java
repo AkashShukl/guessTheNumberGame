@@ -2,15 +2,25 @@ package learn.application.console.config;
 
 import learn.application.console.GuessCount;
 import learn.application.console.MaxNumber;
+import learn.application.console.MinNumber;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("classpath:config/game.properties")
 public class GameConfig {
 
-    private int maxNumber = 100;
+    @Value("${game.maxNumber}")
+    private int maxNumber ;
 
-    private int guessCount = 8;
+    @Value("${game.guessCount}")
+    private int guessCount ;
+
+    @Value("${game.minNumber}")
+    private int minNumber;
+
 
     @Bean
     @MaxNumber
@@ -22,5 +32,11 @@ public class GameConfig {
     @GuessCount
     public int guessCount(){
         return guessCount;
+    }
+
+    @Bean
+    @MinNumber
+    public int minNumber(){
+        return minNumber;
     }
 }
