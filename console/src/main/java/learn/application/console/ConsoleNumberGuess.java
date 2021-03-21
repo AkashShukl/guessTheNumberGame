@@ -15,19 +15,28 @@ public class ConsoleNumberGuess {
 
     private static final Logger log = LoggerFactory.getLogger(ConsoleNumberGuess.class);
 
-    @Autowired
-    private Game game;
+    private final Game game;
+    private final MessageGenerator messageGenerator;
 
     @Autowired
-    private  MessageGenerator messageGenerator;
+    public ConsoleNumberGuess(Game game, MessageGenerator messageGenerator) {
+        this.game = game;
+        this.messageGenerator = messageGenerator;
+    }
+
+//    @Autowired
+//    private Game game;
+//
+//    @Autowired
+//    private  MessageGenerator messageGenerator;
 
     @EventListener(ContextRefreshedEvent.class)
     public void start() {
         log.info("Inside the console container");
 
         Scanner scan = new Scanner(System.in);
-        int count =0;
-        while(true){
+        int count = 0;
+        while (true) {
             System.out.println(count);
             count++;
             System.out.println(messageGenerator.getMainMessage());
@@ -37,10 +46,10 @@ public class ConsoleNumberGuess {
             scan.nextLine();
             game.setGuess(guess);
             game.check();
-            if(game.isGameLost() || game.isGameWon()){
+            if (game.isGameLost() || game.isGameWon()) {
                 System.out.println(messageGenerator.getResultMessage());
                 System.out.println("wanna play again y/n?");
-                if(!(scan.nextLine().trim()).equalsIgnoreCase("y"))
+                if (!(scan.nextLine().trim()).equalsIgnoreCase("y"))
                     break;
                 game.reset();
 
